@@ -4,6 +4,13 @@ import java.util.*;
 public class Main {
 
 
+    //replaceAll
+    public int solution2(String s, String target){
+        String replaced = s.replaceAll(target, "");
+        return (s.length() - replaced.length())/target.length();
+    }
+
+    //투포인터
     public int solution(String s, String target) {
         char[] str = s.toCharArray();
         char[] tar = target.toCharArray();
@@ -52,7 +59,7 @@ public class Main {
         Main T = new Main();
         Scanner sc = new Scanner(System.in);
 
-        System.out.println(T.solution(sc.nextLine(), sc.nextLine()));
+        System.out.println(T.solution2(sc.nextLine(), sc.nextLine()));
 
     }
 }
