@@ -8,15 +8,13 @@ public class Main {
         char[] str = s.toCharArray();
         char[] tar = target.toCharArray();
 
-
+        int lt = 0;
+        int rt = 0;
 
         int cnt = 0;
 
         for(int k = 0; k < tar.length; k++){
             int currCnt = 0;
-            int lt = k;
-            int rt = k;
-
             while(lt < str.length){
                 if(str[lt] == tar[0]){
                     rt = lt;
@@ -26,6 +24,7 @@ public class Main {
                             rt++;
                         }
                         else{
+                            //break 빼먹으면 aabb/ab 반례 통과 못 함
                             break;
                         }
                     }
@@ -35,11 +34,8 @@ public class Main {
                         lt = rt;
                         continue;
                     }
-                    lt++;
                 }
-                else{
-                    lt++;
-                }
+                lt++;
             }
 
             if(cnt < currCnt ) cnt = currCnt;
