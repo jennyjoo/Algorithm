@@ -5,32 +5,16 @@ using namespace std;
 
 int solution(string doc, string target){
     
-    int lt = 0, rt = 0;
     int result = 0;
+    int pt = 0;
     
-    while(lt < doc.length()){
-        if(doc[lt] != target[0]){
-            lt++;
-            continue;
-        }
-        rt = lt;
-        
-        int i = 0;
-        for(; i < target.length() && rt < doc.length(); i++){
-            if(doc[rt] == target[i]){
-                rt++;
-            }else{
-                break;
-            }
-        }
-        
-        if(i == target.length()){
+    while(doc.length() >= target.length() && pt < doc.length()){
+        string tmp = doc.substr(pt++, target.length());
+        if(tmp == target){
             result++;
-            lt = rt;
-            continue; //<- 여기서 틀림
+            pt += target.length() - 1;
         }
         
-        lt++;
     }
     
     return result;
