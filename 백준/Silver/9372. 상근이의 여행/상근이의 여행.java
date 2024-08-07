@@ -3,10 +3,11 @@ import java.util.*;
 
 public class Main {
 
-    private int bfs(int nodes, int point, final List<List<Integer>> nodeList){
+    static boolean[] flag;
+
+    private int bfs(int point, final List<List<Integer>> nodeList){
         int result = 0;
 
-        boolean[] flag = new boolean[nodes + 1];
         flag[0] = true;
 
         Queue<Integer> q = new LinkedList<>();
@@ -37,7 +38,7 @@ public class Main {
 
         int flights = Integer.MIN_VALUE;
         for(int node = 1; node <= nodes; node++){
-            flights = Math.max(flights, bfs(nodes, node, nodeList));
+            flights = Math.max(flights, bfs(node, nodeList));
         }
 
         return flights;
@@ -54,6 +55,8 @@ public class Main {
             int nodes = Integer.parseInt(in[0]);
             int flights = Integer.parseInt(in[1]);
 
+
+            flag = new boolean[nodes + 1];
             List<List<Integer>> nodeList = new ArrayList<>();
 
             for(int j = 0; j < nodes + 1; j++){
