@@ -4,9 +4,9 @@ import java.util.*;
 public class Main {
 
     static boolean[] flag;
+    static int result;
 
     private int bfs(int point, final List<List<Integer>> nodeList){
-        int result = 0;
 
         flag[0] = true;
 
@@ -36,12 +36,17 @@ public class Main {
 
     private int solution(int nodes, List<List<Integer>> nodeList) {
 
-        int flights = Integer.MIN_VALUE;
+        int answer= 0;
         for(int node = 1; node <= nodes; node++){
-            flights = Math.max(flights, bfs(node, nodeList));
+            
+            //어차피 모든 노드는 간선으로 연결되어 있으니 아무 노드 하나만 찍어서 bfs 돌려도 ㅇㅋ
+            if(!flag[node]){
+                answer = bfs(node, nodeList);
+                break;
+            }
         }
 
-        return flights;
+        return answer;
     }
 
     public static void main(String[] args) throws IOException {
@@ -56,6 +61,7 @@ public class Main {
             int flights = Integer.parseInt(in[1]);
 
 
+            result = 0;
             flag = new boolean[nodes + 1];
             List<List<Integer>> nodeList = new ArrayList<>();
 
@@ -75,7 +81,7 @@ public class Main {
             sb.append(T.solution(nodes, nodeList) + "\n");
         }
 
-        System.out.println(sb.toString());
+        System.out.println(sb);
 
     }
 }
