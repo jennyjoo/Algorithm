@@ -105,7 +105,7 @@ public class Main {
         }
 
         StringBuilder sb = new StringBuilder();
-        String[] answer = T.solution4(N, M, words);
+        String[] answer = T.solution3(N, M, words);
         for(String str : answer){
             sb.append(str + "\n");
         }
