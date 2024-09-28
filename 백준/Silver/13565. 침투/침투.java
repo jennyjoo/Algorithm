@@ -46,7 +46,7 @@ public class Main {
             return true;
         }
         else{
-            for(int d = 0; d < 3; d++){
+            for(int d = 0; d < 4; d++){
                 int ny = curr.y + dy[d];
                 int nx = curr.x + dx[d];
 
@@ -118,6 +118,6 @@ public class Main {
             }
         }
 
-        System.out.println(T.solution(m, n, ar));
+        System.out.println(T.solution2(m, n, ar));
     }
 }
