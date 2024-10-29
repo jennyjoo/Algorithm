@@ -11,22 +11,9 @@ public class Main {
 
         long input = Long.parseLong(br.readLine());
 
-        long lt = 0;
-        long rt = input;
-        long mid;
-
-        while(lt < rt){
-            mid = (lt + rt)/2;
-
-            if(input <= Math.pow(mid,2)){
-                rt = mid;
-            }
-            else{
-                lt = mid + 1;
-            }
-        }
-
-        System.out.println((long)lt);
+        long out = (long)Math.sqrt(input);
+        if(Math.pow(out,2) < input) out += 1;
+        System.out.println(out);
 
     }
 }
