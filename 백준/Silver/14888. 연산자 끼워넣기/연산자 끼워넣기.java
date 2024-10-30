@@ -3,13 +3,14 @@ import java.util.*;
 
 public class Main {
 
-
     static int[] numbers;
     static int[] operands;
     static int[] out;
     static int[] visited;
 
-    static List<Integer> list;
+    //static List<Integer> list; // 비효율적, 몇 개까지 경우의 수가 나올지 모르기 때문
+    static int max = Integer.MIN_VALUE;
+    static int min = Integer.MAX_VALUE;
 
     private void permutation(int depth){
         if(depth == 0){
@@ -28,7 +29,9 @@ public class Main {
                 }
             }
 
-            list.add(sum);
+            if(sum > max) max = sum;
+            if(sum < min) min = sum;
+
             return;
         }
 
@@ -46,10 +49,9 @@ public class Main {
 
         //순열 문제
         permutation(N - 1);
-        Collections.sort(list);
 
-        System.out.println(list.get(list.size()-1));
-        System.out.println(list.get(0));
+        System.out.println(max);
+        System.out.println(min);
 
     }
 
@@ -63,7 +65,6 @@ public class Main {
         numbers = new int[N];
         operands = new int[4];
         out = new int[N-1];
-        list = new ArrayList<>();
         visited = new int[N];
 
 
@@ -83,6 +84,5 @@ public class Main {
         T.solution(N);
 
     }
-
 
 }
