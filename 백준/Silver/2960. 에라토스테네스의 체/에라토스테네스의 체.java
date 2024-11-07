@@ -19,8 +19,7 @@ public class Main {
         int cnt = 0;
         for(int i = 2; i <= N; i++){
             if(!flag[i]){
-                int m = 2;
-                for(int j = i; j <= N; j = i * (m++)){
+                for(int j = i; j <= N; j += i){
                     if(!flag[j]){
                         flag[j] = true;
                         cnt++;
