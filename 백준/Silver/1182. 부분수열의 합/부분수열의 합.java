@@ -5,26 +5,16 @@ public class Main {
 
     static int[] arr;
     static int N, K;
-    static boolean[] visited;
     static int cnt = 0;
 
-    public void backtracking(int depth, int n, int start){
-        if(depth == n){
-            int sum = 0;
-            for(int i = 0; i < N; i++){
-                if(visited[i]) sum += arr[i];
-            }
-
+    public void backtracking(int depth, int sum){
+        if(depth == N){
             if(sum == K) cnt++;
             return;
         }
 
-        for(int i = start; i < N; i++){
-            if(visited[i]) continue;
-            visited[i] = true;
-            backtracking(depth + 1, n, i + 1);
-            visited[i] = false;
-        }
+        backtracking(depth + 1, sum + arr[depth]);
+        backtracking(depth + 1, sum);
     }
     public static void main(String[] args) throws IOException{
         Main T = new Main();
@@ -35,17 +25,14 @@ public class Main {
         N = Integer.parseInt(st.nextToken());
         K = Integer.parseInt(st.nextToken());
 
-        visited = new boolean[N];
-
         arr = new int[N];
         st = new StringTokenizer(br.readLine());
         for(int i = 0; i < N; i++){
             arr[i] = Integer.parseInt(st.nextToken());
         }
 
-        for(int i = 1; i <= N; i++){
-            T.backtracking(0, i, 0);
-        }
+        T.backtracking(0,0);
+        if(K == 0) cnt--;
 
         System.out.println(cnt);
 
