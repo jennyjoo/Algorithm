@@ -21,7 +21,7 @@ public class Main {
         }
 
         for(int i = 0; i < n; i++){
-            if(visited[i]) continue;
+            if(visited[i]) continue; // 중복 순열아니고 그냥 순열, visited 있으니까
             visited[i] = true;
             backtracking(depth-1, out.concat(arr[i]));
             visited[i] = false;
