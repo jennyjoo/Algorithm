@@ -85,7 +85,7 @@ public class Main {
         }
 
 
-        System.out.println(T.solution2(N, M));
+        System.out.println(T.solution(N, M));
 
     }
 }
