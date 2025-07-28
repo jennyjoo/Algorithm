@@ -17,6 +17,6 @@ class Solution {
         dp[0] = 0;
         dp[1] = 1;
         
-        return (int)(dynamic(n) % 1234567);
+        return (int)dynamic(n);
     }
 }
