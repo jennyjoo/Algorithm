@@ -1,9 +1,7 @@
 import java.io.*;
 import java.util.*;
 
-//https://www.acmicpc.net/problem/13023
 public class Main {
-
 
     public static void main(String[] args) throws IOException {
 
@@ -24,9 +22,5 @@ public class Main {
         }
 
         System.out.println(q.poll());
-
-
-
     }
-
 }
