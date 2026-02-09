@@ -3,43 +3,52 @@ import java.util.*;
 
 public class Main {
 
-
-
-
-    public String[] solution(String[] neverHeard, String[] neverSeen){
+    private List<String> check(Set<String> neverHeard, String[] neverSeen) {
         List<String> names = new ArrayList<>();
-
-        Set<String> set = new HashSet<>(List.of(neverHeard));
-        for(String seen : neverSeen){
-            if(set.contains(seen)) names.add(seen);
+        for(String name : neverSeen) {
+            if (neverHeard.contains(name)) {
+                names.add(name);
+            }
         }
-
-        Collections.sort(names);
-
-        return names.toArray(new String[names.size()]);
+        return names;
     }
 
 
-
     public static void main(String[] args) throws IOException {
+
         Main T = new Main();
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StringBuilder sb = new StringBuilder();
+
+
         StringTokenizer st = new StringTokenizer(br.readLine());
+        int N = Integer.parseInt(st.nextToken());
+        int M = Integer.parseInt(st.nextToken());
 
-        int n = Integer.parseInt(st.nextToken());
-        int m = Integer.parseInt(st.nextToken());
+        Set<String> neverHeard = new HashSet<>();
+        String[] neverSeen = new String[M];
 
-        String[] neverHeard = new String[n];
-        String[] neverSeen = new String[m];
+        // 듣도 못한
+        for (int i = 0; i < N; i++) {
+            neverHeard.add(br.readLine());
+        }
 
-        for(int i = 0; i < neverHeard.length; neverHeard[i] = br.readLine(), i++){}
-        for(int i = 0; i < neverSeen.length; neverSeen[i] = br.readLine(), i++){}
+        // 보도 못한
+        for(int i  =0; i < M; i++) {
+            neverSeen[i] = br.readLine();
+        }
 
 
-//        System.out.println(T.solution(neverHeard, neverSeen));
-        String[] res = T.solution(neverHeard, neverSeen);
-        System.out.println(res.length);
-        Arrays.stream(res).forEach(o->System.out.println(o));
+        // 결과
+        List<String> result = T.check(neverHeard, neverSeen);
+        result.sort(String::compareTo); // 정렬
 
+        sb.append(result.size()).append("\n");
+        for (String s : result) {
+            sb.append(s).append("\n");
+        }
+
+        // 출력
+        System.out.println(sb.toString());
     }
 }
