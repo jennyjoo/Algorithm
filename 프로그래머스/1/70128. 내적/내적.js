@@ -1,8 +1,6 @@
-function solution(a, b) {
-    var answer = 0;
+function solution(a, b) {    
     
-    for (let i = 0; i < a.length; i++) {
-        answer += a[i] * b[i]
-    }
-    return answer;
+    return a.reduce((acc, curr, index) => {
+        return acc + curr * b[index]
+    }, 0);
 }
