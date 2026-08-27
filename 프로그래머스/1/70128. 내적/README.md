@@ -1,10 +1,10 @@
 # [level 1] 내적 - 70128 
 
-[문제 링크](https://school.programmers.co.kr/learn/courses/30/lessons/70128?language=java) 
+[문제 링크](https://school.programmers.co.kr/learn/courses/30/lessons/70128?language=javascript) 
 
 ### 성능 요약
 
-메모리: 74.4 MB, 시간: 0.03 ms
+메모리: 44.2 MB, 시간: 0.13 ms
 
 ### 구분
 
@@ -16,7 +16,7 @@
 
 ### 제출 일자
 
-2026년 08월 28일 03:08:06
+2026년 08월 28일 03:10:37
 
 ### 문제 설명
 
