@@ -1,23 +1,17 @@
 class Solution {
-    
-    static int sum = 0;
-    
-    public int recursive (int number) {
+        
+    public int recursiveSum (int number) {
+        // 이미 0인 상태로 넘어온 값 판별, 판별은 부모가 하지 않고 넘겨받은 자식이
         if (number == 0) return 0;
-        else {
-            sum += number % 10;
-            return recursive(number/10);
-        }
+        
+        // a(n+1) = a(n) + k
+        return (number % 10) + recursiveSum(number / 10);
     }
     
     public boolean solution(int x) {
-        boolean answer = true;
         
-        recursive(x);
+        int sum = recursiveSum(x);
         
-        float q = (float) x / sum;
-        float del = q - (x / sum);
-        
-        return del == 0.0 ? true: false;
+        return x % sum == 0 ? true : false;
     }
 }
