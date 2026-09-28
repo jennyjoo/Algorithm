@@ -3,31 +3,31 @@ import java.util.*;
 class Solution {
     
     private static int[][] dp;
-    private static int[][] TRIANGLE;
-    private int max(int x, int y) {
-        
-        if (y == TRIANGLE.length) return 0;
-        
-        // memoization
-        if (dp[y][x] != -1) return dp[y][x];
-        
-        return dp[y][x] = TRIANGLE[y][x] + Math.max(
-            max(x, y+1),
-            max(x+1, y+1)
-        );
-    }
+    
+    // 호출 순서 의미의 bottom-up
+    // 정말로 삼각형 bottom 부터 top 까지 <-- 지금 방식
+    // top-down 재귀 방식 (방금 방식)
     
     public int solution(int[][] triangle) {
         
-        this.dp = new int[501][501];
-        this.TRIANGLE = triangle;
+        int len = triangle.length;
+        this.dp = new int[len + 1][len + 1];
         
-        // init
-        for(int[] row : this.dp) {
-            Arrays.fill(row, -1);
+        for (int i = 1; i <= len; i++) {
+            dp[len][i] = triangle[len-1][i-1];
+        }
+        
+        // bottom up
+        for (int i = len - 1; i >= 1; i--) {
+            for(int j = 1; j <= i; j++) {
+                dp[i][j] += 
+                    triangle[i-1][j-1] 
+                    + Math.max(dp[i + 1][j], dp[i+1][j + 1]);
+            }
         }
         
         
-        return max(0, 0);
+        
+        return dp[1][1];
     }
 }
