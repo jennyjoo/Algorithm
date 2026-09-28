@@ -6,10 +6,7 @@ class Solution {
         int walletW = Math.min(wallet[0], wallet[1]);
         
         
-        while (
-            (walletH < bill[0] || walletW < bill[1] )
-           && (walletH < bill[1] || walletW < bill[0])
-        ) {
+        while (Math.max(bill[1], bill[0]) > walletH || Math.min(bill[1], bill[0]) > walletW) {
             int index = bill[0]  > bill[1] ? 0 : 1;
             bill[index] = bill[index] / 2;
             
