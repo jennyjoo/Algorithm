@@ -5,25 +5,15 @@ class Solution {
         int walletH = Math.max(wallet[0], wallet[1]);
         int walletW = Math.min(wallet[0], wallet[1]);
         
-        while (true) {
-            int longer = Math.max(bill[0], bill[1]);
-            int shorter = Math.min(bill[0], bill[1]);
+        
+        while (
+            (walletH < bill[0] || walletW < bill[1] )
+           && (walletH < bill[1] || walletW < bill[0])
+        ) {
+            int index = bill[0]  > bill[1] ? 0 : 1;
+            bill[index] = bill[index] / 2;
             
-            
-            if (
-                shorter <= walletH && longer <= walletW
-                || shorter <= walletW && longer <= walletH
-            )
-            { 
-                break; 
-            }
-                
-            
-            int half = longer / 2;
-
             answer++;
-            bill[0] = shorter;
-            bill[1] = half;
 
         }
         
