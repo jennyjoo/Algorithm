@@ -1,45 +1,31 @@
-import java.io.*;
 import java.util.*;
+import java.io.*;
 
 public class Main {
 
-    private int binarySearch(int target, int[] arr) {
+    private boolean hasNumber(int[] array, int target) {
+        int lt = 0, rt = array.length - 1;
+        int mid = (lt + rt) / 2;
 
-        int lt = 0;
-        int rt = arr.length - 1;
-        int mid;
-
+        // 단순 값 찾기
         while (lt <= rt) {
-            mid = (lt + rt)/2;
-            int val = arr[mid];
-            if (target < val) {
-                rt = mid - 1;
+            if (array[mid] == target) {
+                return true;
             }
-            else if (val < target) {
+            else if (array[mid] < target) {
                 lt = mid + 1;
             }
-            else {
-                return mid;
+            else if (target < array[mid]) {
+                rt = mid - 1;
             }
+
+            mid = (lt + rt) / 2;
         }
 
-        return -1;
+        return false;
     }
-
-    private boolean[] check(int[] arr1, int[] arr2) {
-        boolean[] result = new boolean[arr2.length];
-
-        for(int i = 0; i < arr2.length; i++) {
-            int index = binarySearch(arr2[i], arr1);
-            result[i] = index > -1 ;
-        }
-
-        return result;
-    }
-
 
     public static void main(String[] args) throws IOException {
-
         Main T = new Main();
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringBuilder sb = new StringBuilder();
@@ -47,32 +33,27 @@ public class Main {
         int N = Integer.parseInt(br.readLine());
         int[] arr = new int[N];
 
-
-
-        // 첫번째 arr
         StringTokenizer st = new StringTokenizer(br.readLine());
-        for (int i = 0;  st.hasMoreTokens() ; i++) {
+        for( int i = 0; i < N; i++) {
             arr[i] = Integer.parseInt(st.nextToken());
         }
 
         Arrays.sort(arr);
 
-        // 두 번째 arr
+
         int M = Integer.parseInt(br.readLine());
-        int[] arr2 = new int[M];
         st = new StringTokenizer(br.readLine());
-        for (int i = 0; st.hasMoreTokens(); i++) {
-            arr2[i] = Integer.parseInt(st.nextToken());
+        for(int i = 0; i < M; i++) {
+            if(T.hasNumber(arr, Integer.parseInt(st.nextToken()))) {
+                sb.append("1").append("\n");
+            }
+            else{
+                sb.append("0").append("\n");
+            }
         }
-
         
-        // 결과
-        boolean[] results = T.check(arr, arr2);
-        for(boolean b : results) {
-            sb.append(b ? 1 : 0).append("\n");
-        }
 
-        // 출력
         System.out.println(sb.toString());
+
     }
 }
